@@ -5,6 +5,7 @@ using UnityStandardAssets.CrossPlatformInput;
 
 
 public class Player : MonoBehaviour {
+    public float MovZ;
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +14,16 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        CrossPlatformInputManager.GetKeyDown("w");
-	}
+        //Working on building a move horizontal method. 
+        Debug.Log(Input.GetAxisRaw("Horizontal"));
+        if(CrossPlatformInputManager.GetAxisRaw("Horizontal") == 1f)
+        {
+            this.transform.Translate(CrossPlatformInputManager.GetAxisRaw("Horizontal") * 0, 0, MovZ * Time.deltaTime);
+        }
+        if(CrossPlatformInputManager.GetAxisRaw("Horizontal") == -1f)
+        {
+            this.transform.Translate(CrossPlatformInputManager.GetAxisRaw("Horizontal") * 0, 0, -MovZ * Time.deltaTime);
+        }
+    }
 
 }
